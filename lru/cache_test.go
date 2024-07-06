@@ -27,9 +27,6 @@ func TestCache(t *testing.T) {
 			// Create a new LRU cache.
 			lru := NewLRUCache(tt.capacity)
 
-			// if tt.capacity == 0 {
-			// 	return
-			// }
 			// Add all the nonces to the cache.
 			for i := 0; i < tt.capacity; i++ {
 				lru.Add(nonces[i])
@@ -86,4 +83,18 @@ func BenchmarkCache(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		lru.Add(nonces[i%numNonces])
 	}
+}
+
+func TestAdd(t *testing.T){
+	numNonces := 10
+	nonces := make([]int, 0, numNonces)
+	for i := 0; i < numNonces*2; i++ {
+		nonces = append(nonces, i)
+	}
+
+	lru := NewLRUCache(numNonces)
+	for i := 0; i < numNonces; i++ {
+		lru.Add(nonces[i])
+	}
+	lru.Add(nonces[0])
 }
