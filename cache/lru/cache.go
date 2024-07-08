@@ -44,14 +44,14 @@ func (c *LRUCache) Get(item any) any {
 		c.mtx.Unlock()
 		return node.Value
 	} else {
-		c.Add(item)
+		c.Put(item)
 		return item
 	}
 }
 
 // Add adds the given item to the cache.
 // This function is safe for concurrent access.
-func (c *LRUCache) Add(item any) {
+func (c *LRUCache) Put(item any) {
 	c.mtx.Lock()
 	defer c.mtx.Unlock()
 
