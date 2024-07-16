@@ -12,3 +12,4 @@ func BubbleSort[T cmp.Ordered](arr []T) {
 		}
 	}
 }
+
