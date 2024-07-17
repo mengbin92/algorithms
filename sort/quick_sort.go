@@ -34,6 +34,6 @@ func QuickSort[T cmp.Ordered](arr []T) []T {
 		}
 	}
 
-	// 递归排序
+	// 递归调用
 	return append(append(QuickSort(left), pivot), QuickSort(right)...)
 }
